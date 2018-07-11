@@ -1,0 +1,18 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: ${hostname:localhost}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    enableSelfPreservation: true
+
+ribbon:
+  eureka:
+    enabled: true
+
+application:
+  name: eureka-service

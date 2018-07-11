@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+ribbon:
+  eureka:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761/eureka/}
+    registerWithEureka: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  prefix: /api
+  routes:
+    products:
+      path: /products:/**
+      serviceId: products-service
+    users:
+      path: /users/**
+      serviceId: users-service
+    sales:
+      path: /sales/**
+      serviceId: sales-service
+
+

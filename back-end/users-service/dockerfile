@@ -1,0 +1,26 @@
+# Download ubuntu image
+FROM openjdk:8-jdk-alpine
+
+# Set Work directory to app folder
+WORKDIR /app
+
+# Copy everything from this folder to /app in container
+ADD . /app
+
+RUN apk add unzip
+# Install Gradle
+RUN mkdir /opt
+RUN mkdir /opt/gradle
+RUN wget https://services.gradle.org/distributions/gradle-4.8.1-bin.zip
+RUN unzip -d /opt/gradle gradle-4.8.1-bin.zip
+RUN rm -rf gradle-4.8.1-bin.zip
+RUN ln -s /opt/gradle/gradle-4.8.1/bin/gradle /usr/bin/gradle
+# Verify Installation
+RUN gradle -v
+
+# Build the jar
+RUN gradle build
+
+# Run service
+CMD [ "java", "-jar", "/app/build/libs/users-service-0.0.1-SNAPSHOT.jar" ]
+
