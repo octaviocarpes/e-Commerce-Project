@@ -20,7 +20,12 @@ public class UserService {
     }
 
     public User updateUser(User user){
-       return repository.updateUser(user);
+        User old = repository.getUserById(user.getId());
+        old.setName(user.getName());
+        old.setEmail(user.getEmail());
+        old.setPassword(user.getPassword());
+        repository.insert(old);
+        return user;
     }
 
     public boolean deleteUser(User user){

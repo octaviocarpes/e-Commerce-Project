@@ -20,13 +20,16 @@ services:
       - "8080:8080"
     environment:
       DISCOVERY_URL: http://service-register:8761/eureka
+    depends_on:
+      - service-register
 
   user-service:
     build: ./back-end/users-service/
     ports:
-      - "3333:3333"
+      - "8090:8090"
     environment:
       DB_HOST: mongo-db
       DISCOVERY_URL: http://service-register:8761/eureka
     depends_on:
       - mongo-db
+      - service-register
