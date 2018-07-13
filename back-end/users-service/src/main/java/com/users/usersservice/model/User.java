@@ -1,15 +1,17 @@
-package com.users.usersservice.pojo;
+package com.users.usersservice.model;
 
-
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Client")
+@Document(collection = "User")
 public class User {
+
+    @Id
+    private String id;
 
     private String name;
     private String email;
     private String password;
-    private int id;
 
     public User() {
     }
@@ -44,11 +46,11 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

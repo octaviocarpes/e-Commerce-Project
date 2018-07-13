@@ -1,8 +1,9 @@
 package com.users.usersservice.service;
 
-import com.users.usersservice.pojo.User;
+import com.users.usersservice.model.User;
 import com.users.usersservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,16 +16,15 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User getUserById(int id){
-        return repository.getUserById(id);
+    public User getUserById(String id){
+        return repository.findById(id).orElse(null);
     }
 
     public User updateUser(User user){
-        User old = repository.getUserById(user.getId());
-        old.setName(user.getName());
-        old.setEmail(user.getEmail());
-        old.setPassword(user.getPassword());
-        repository.insert(old);
+        if(repository.findById(user.getId()).isPresent()) {
+            repository.save(user);
+        }
+
         return user;
     }
 

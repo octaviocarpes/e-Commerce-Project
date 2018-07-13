@@ -1,34 +1,30 @@
 package com.users.usersservice.controller;
 
-import com.users.usersservice.pojo.User;
+import com.users.usersservice.model.User;
 import com.users.usersservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/users")
 public class UsersController {
 
     @Autowired
     UserService service;
-
-    @GetMapping("/health")
-    public String health(){
-        return "alive";
-    }
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody User user){
         return ResponseEntity.ok(service.registerUser(user));
     }
 
-    @GetMapping("/id")
-    public ResponseEntity getUserById(@RequestParam int id){
+    @GetMapping("/{id}")
+    public ResponseEntity getUserById(@PathVariable("id") String id){
         return ResponseEntity.ok(service.getUserById(id));
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateUser(User user){
+    public ResponseEntity updateUser(@RequestBody User user){
         return ResponseEntity.ok(service.updateUser(user));
     }
 
