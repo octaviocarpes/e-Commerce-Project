@@ -21,7 +21,7 @@ public class UserService {
     }
 
     public User updateUser(User user){
-        if(repository.findById(user.getId()).isPresent()) {
+        if(repository.findById(user.getId().toString()).isPresent()) {
             repository.save(user);
         }
 

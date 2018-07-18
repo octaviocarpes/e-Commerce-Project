@@ -5,6 +5,15 @@ services:
     restart: always
     ports:
       - "27017:27017"
+  postgresql:
+    image: postgres:9.6
+    restart: always
+    environment:
+      POSTGRES_DB: User
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+    ports:
+      - "5431:5431"
 
   service-register:
     build: ./back-end/service-register/
@@ -28,8 +37,8 @@ services:
     ports:
       - "8090:8090"
     environment:
-      DB_HOST: mongo-db
+      DB_HOST: postgresql
       DISCOVERY_URL: http://service-register:8761/eureka
     depends_on:
-      - mongo-db
+      - postgresql
       - service-register

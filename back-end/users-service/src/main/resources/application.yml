@@ -1,11 +1,23 @@
 spring:
   application:
     name: users-service
-  data:
-    mongodb:
-      database: users
-      host: ${DB_HOST:localhost}
-      port: ${DB_PORT:27017}
+  datasource:
+    platform: postgres
+    username: postgres
+    password: senha
+    url: jdbc:postgresql://localhost:5431/Users
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  database:
+    driverClassName: org.postgresql.Driver
+
 
 server:
   port: ${PORT:8090}
