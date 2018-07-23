@@ -1,23 +1,17 @@
 spring:
   application:
-    name: users-service
+    name: ms-auth
   datasource:
-    platform: postgres
-    username: postgres
-    password: senha
-    url: jdbc:postgresql://localhost:5431/Users
+    url: jdbc:postgresql://${POSTGRES_HOST:postgresql}:${POSTGRES_PORT:5432}/${POSTGRES_DB:postgres}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
   jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
-    database: POSTGRESQL
     properties:
       hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
-  database:
-    driverClassName: org.postgresql.Driver
-
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    ddl-auto: update
 
 server:
   port: ${PORT:8090}

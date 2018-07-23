@@ -1,34 +1,34 @@
-package com.users.usersservice.controller;
+package com.auth.msauth.controllers;
 
-import com.users.usersservice.model.User;
-import com.users.usersservice.service.UserService;
+import com.auth.msauth.model.User;
+import com.auth.msauth.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users")
-public class UsersController {
+@RequestMapping(value = "users")
+public class UserController {
 
     @Autowired
     UserService service;
 
-    @PostMapping("/register")
-    public ResponseEntity register(@RequestBody User user){
+    @PostMapping(value = "/register")
+    public ResponseEntity registerUser(@RequestBody User user){
         return ResponseEntity.ok(service.registerUser(user));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity getUserById(@PathVariable("id") String id){
-        return ResponseEntity.ok(service.getUserById(id));
+    @GetMapping(value = "/{id}")
+    public ResponseEntity getUser(@RequestParam String id){
+        return ResponseEntity.ok(service.getUser(id));
     }
 
-    @PutMapping("/update")
+    @PutMapping(value = "/update")
     public ResponseEntity updateUser(@RequestBody User user){
         return ResponseEntity.ok(service.updateUser(user));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping(value = "/delete")
     public ResponseEntity deleteUser(@RequestBody User user){
         return ResponseEntity.ok(service.deleteUser(user));
     }

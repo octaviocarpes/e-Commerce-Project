@@ -1,13 +1,13 @@
-package com.users.usersservice.controller;
+package com.auth.msauth.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(value = "/health")
+@RestController
 public class HealthController {
 
-    @GetMapping
+    @GetMapping("health")
     public String health(){
-        return "alive";
+        return "Alive";
     }
 }

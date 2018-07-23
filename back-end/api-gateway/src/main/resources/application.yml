@@ -25,9 +25,9 @@ zuul:
     products:
       path: /products-service/**
       serviceId: products-service
-    users:
-      path: /user-service/**
-      serviceId: users-service
+    auth:
+      path: /auth/**
+      serviceId: ms-auth
     sales:
       path: /sales-service/**
       serviceId: sales-service

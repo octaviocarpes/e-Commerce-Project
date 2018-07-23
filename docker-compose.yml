@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_DB: User
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: senha
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5431:5431"
 
@@ -32,8 +32,8 @@ services:
     depends_on:
       - service-register
 
-  user-service:
-    build: ./back-end/users-service/
+  ms-auth:
+    build: ./back-end/ms-auth/
     ports:
       - "8090:8090"
     environment:
