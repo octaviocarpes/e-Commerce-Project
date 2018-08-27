@@ -6,14 +6,12 @@ services:
     ports:
       - "27017:27017"
   postgresql:
-    image: postgres:9.6
+    build: ./back-end/ms-auth/database/
     restart: always
     environment:
-      POSTGRES_DB: User
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_SCHEMA: ecommerce
     ports:
-      - "5431:5431"
+      - "5432:5432"
 
   service-register:
     build: ./back-end/service-register/
